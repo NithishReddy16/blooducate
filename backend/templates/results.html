@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    <h2>Available Donors</h2>
+    {% if donors %}
+        <ul>
+            {% for donor in donors %}
+                <li><strong>{{ donor['name'] }}</strong> - {{ donor['blood_group'] }} - {{ donor['location'] }} - Last Donated: {{ donor['last_donation_date'] }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No donors found for the selected blood group and location.</p>
+    {% endif %}
+</div>
+</body>
+</html>

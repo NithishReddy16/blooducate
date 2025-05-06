@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Donor Dashboard - BloodUcate</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="dashboard-nav">
+        <div class="nav-brand">
+            <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="BloodUcate Logo" class="nav-logo">
+            <span>BloodUcate</span>
+            </div>
+            <div class="nav-links">
+            <a href="{{ url_for('home') }}" class="nav-link"><i class="fas fa-home"></i> Home</a>
+            <a href="{{ url_for('logout') }}" class="nav-link"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </nav>
+
+    <div class="dashboard-container">
+        <div class="dashboard-sidebar">
+            <div class="user-profile">
+                <div class="profile-image">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <h3>{{ user.name }}</h3>
+                <p class="blood-type">{{ user.blood_group }}</p>
+            </div>
+            <div class="sidebar-menu">
+                <a href="#profile" class="menu-item active"><i class="fas fa-user"></i> Profile</a>
+                <a href="#donation-history" class="menu-item"><i class="fas fa-history"></i> Donation History</a>
+                <a href="#update-donation" class="menu-item"><i class="fas fa-calendar-plus"></i> Update Donation</a>
+            </div>
+        </div>
+
+        <div class="dashboard-content">
+            <section id="profile" class="dashboard-section">
+                <h2>Profile Information</h2>
+                <div class="profile-grid">
+                    <div class="profile-card">
+                        <i class="fas fa-envelope"></i>
+                        <div class="card-content">
+                            <h4>Email</h4>
+                            <p>{{ user.email }}</p>
+                        </div>
+                    </div>
+                    <div class="profile-card">
+                        <i class="fas fa-phone"></i>
+                        <div class="card-content">
+                            <h4>Phone</h4>
+                            <p>{{ user.phone }}</p>
+                        </div>
+                    </div>
+                    <div class="profile-card">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="card-content">
+                            <h4>Location</h4>
+                            <p>{{ user.location }}</p>
+                        </div>
+                        </div>
+                    <div class="profile-card">
+                        <i class="fas fa-venus-mars"></i>
+                        <div class="card-content">
+                            <h4>Gender</h4>
+                            <p>{{ user.gender }}</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="donation-history" class="dashboard-section">
+                <h2>Donation History</h2>
+                <div class="donation-card">
+                    <div class="donation-info">
+                        <h3>Last Donation</h3>
+                        <p class="donation-date">{{ user.last_donation_date or 'No donations yet' }}</p>
+                    </div>
+                    <div class="donation-status">
+                        {% if user.last_donation_date %}
+                            {% set days_since = ((now - user.last_donation_date).days) %}
+                            {% if days_since >= 90 %}
+                                <span class="status eligible">Eligible to Donate</span>
+                            {% else %}
+                                <span class="status ineligible">Not Eligible Yet</span>
+                                <p class="days-remaining">{{ 90 - days_since }} days remaining</p>
+                            {% endif %}
+                        {% else %}
+                            <span class="status eligible">Eligible to Donate</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </section>
+
+            <section id="update-donation" class="dashboard-section">
+                <h2>Update Last Donation</h2>
+                <form id="updateDonationForm" class="update-form">
+                    <div class="form-group">
+                        <label for="last_donation_date">Last Donation Date</label>
+                        <input type="date" id="last_donation_date" name="last_donation_date" required>
+                    </div>
+                    <button type="submit" class="btn primary-btn">Update Donation Date</button>
+                </form>
+            </section>
+            </div>
+    </div>
+
+    <style>
+        .dashboard-nav {
+            background: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            color: #555;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        .dashboard-container {
+            display: flex;
+            margin-top: 80px;
+            min-height: calc(100vh - 80px);
+        }
+
+        .dashboard-sidebar {
+            width: 280px;
+            background: white;
+            padding: 2rem;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        }
+
+        .user-profile {
+            text-align: center;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 2rem;
+        }
+
+        .profile-image {
+            width: 100px;
+            height: 100px;
+            background: #f5f5f5;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+        }
+
+        .profile-image i {
+            font-size: 3rem;
+            color: #666;
+        }
+
+        .blood-type {
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+
+        .sidebar-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .menu-item {
+            padding: 1rem;
+            color: #555;
+            text-decoration: none;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .menu-item:hover, .menu-item.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .dashboard-content {
+            flex: 1;
+            padding: 2rem;
+            background: #f5f7fa;
+        }
+
+        .dashboard-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .dashboard-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .profile-card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .profile-card i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .card-content h4 {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .card-content p {
+            color: #333;
+            font-weight: 500;
+        }
+
+        .donation-card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .donation-date {
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        .status {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .status.eligible {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .status.ineligible {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .days-remaining {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .update-form {
+            max-width: 400px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+    </style>
+
+    <script>
+        document.getElementById('updateDonationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            
+            fetch('/update_last_donation', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(data.message);
+                    location.reload();
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => {
+                alert('An error occurred. Please try again.');
+            });
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,93 @@
+<!-- templates/awareness.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blood Donation Awareness</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Welcome, {{ session['user']['name'] }}!</h1>
+            <p class="hero-subtitle">Be a Hero, Donate Blood</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <section class="info-section">
+            <h2>Why Donate Blood?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <i class="fas fa-heartbeat"></i>
+                    <h3>Save Lives</h3>
+                    <p>One donation can save up to 3 lives</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-heart"></i>
+                    <h3>Health Benefits</h3>
+                    <p>Stimulates blood cell production and reduces harmful iron stores</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Community Impact</h3>
+                    <p>Make a difference in your community</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="facts-section">
+            <h2>Did You Know?</h2>
+            <div class="facts-grid">
+                <div class="fact-card">
+                    <i class="fas fa-clock"></i>
+                    <p>Every 2 seconds someone needs blood</p>
+                </div>
+                <div class="fact-card">
+                    <i class="fas fa-tint"></i>
+                    <p>Only 3% of age-eligible people donate blood yearly</p>
+                </div>
+                <div class="fact-card">
+                    <i class="fas fa-calendar-check"></i>
+                    <p>You can donate blood every 56 days</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="process-section">
+            <h2>The Donation Process</h2>
+            <div class="process-steps">
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <h3>Registration</h3>
+                    <p>Complete a health history questionnaire</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <h3>Health Check</h3>
+                    <p>Quick physical check-up</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <h3>Donation</h3>
+                    <p>Actual blood donation (8-10 minutes)</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">4</span>
+                    <h3>Refresh</h3>
+                    <p>Enjoy snacks and refreshments</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="cta-buttons">
+            <a href="/search" class="btn primary-btn">
+                <i class="fas fa-search"></i> Search for Donors
+            </a>
+            <a href="/logout" class="btn secondary-btn">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+        </div>
+    </div>
+</body>
+</html>

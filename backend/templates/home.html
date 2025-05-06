@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BloodUcate - Blood Donation Awareness</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="BloodUcate Logo" class="home-logo large-logo">
+            </div>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#blood-types">Blood Types</a>
+                <a href="#process">Process</a>
+                <a href="#benefits">Benefits</a>
+                <a href="#faq">FAQ</a>
+                <a href="#statistics">Statistics</a>
+                <div class="nav-search">
+                    <form id="navSearchForm" class="nav-search-form">
+                        <select class="form-control" id="nav_blood_group" name="blood_group" required>
+                            <option value="">Blood Type</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                        </select>
+                        <select class="form-control" id="nav_location" name="location" required>
+                            <option value="">City</option>
+                            <option value="Mumbai">Mumbai</option>
+                            <option value="Delhi">Delhi</option>
+                            <option value="Bangalore">Bangalore</option>
+                            <option value="Hyderabad">Hyderabad</option>
+                            <option value="Chennai">Chennai</option>
+                            <option value="Kolkata">Kolkata</option>
+                            <option value="Pune">Pune</option>
+                            <option value="Ahmedabad">Ahmedabad</option>
+                            <option value="Jaipur">Jaipur</option>
+                            <option value="Lucknow">Lucknow</option>
+                            <option value="Kanpur">Kanpur</option>
+                            <option value="Nagpur">Nagpur</option>
+                            <option value="Indore">Indore</option>
+                            <option value="Thane">Thane</option>
+                            <option value="Bhopal">Bhopal</option>
+                            <option value="Visakhapatnam">Visakhapatnam</option>
+                            <option value="Patna">Patna</option>
+                            <option value="Vadodara">Vadodara</option>
+                            <option value="Ghaziabad">Ghaziabad</option>
+                            <option value="Ludhiana">Ludhiana</option>
+                            <option value="Coimbatore">Coimbatore</option>
+                            <option value="Kochi">Kochi</option>
+                            <option value="Guwahati">Guwahati</option>
+                        </select>
+                        <button type="submit" class="btn primary-btn small-btn">Search</button>
+                    </form>
+                </div>
+                <a href="/login" class="btn primary-btn">Login</a>
+                <a href="/register" class="btn secondary-btn">Register</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content" data-aos="fade-up">
+            <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="BloodUcate Logo" class="hero-logo">
+            <h1 class="main-title">BLOODUCATE</h1>
+            <p class="hero-subtitle">Donate blood, save a life</p>
+            <div class="cta-buttons">
+                <a href="/register" class="btn primary-btn cta-white">Become a Donor</a>
+                <a href="#about" class="btn secondary-btn cta-white">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section" data-aos="fade-up" id="statistics">
+        <div class="container">
+            <h2 class="section-title">India's Blood Donation Landscape</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <i class="fas fa-heartbeat"></i>
+                    <h3>12,000+</h3>
+                    <p>Annual deaths due to blood shortage</p>
+                    <p style="font-size:1rem;color:#263238;font-weight:500;margin-top:0.5rem;">which translates to approximately 4.38 million deaths annually.</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-tint"></i>
+                    <h3>1.5 Million</h3>
+                    <p>Units of blood shortage annually</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-users"></i>
+                    <h3>1%</h3>
+                    <p>Of population donates blood regularly</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-hospital"></i>
+                    <h3>2,760+</h3>
+                    <p>Licensed blood banks in India</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <h3>Every 2 Seconds</h3>
+                    <p>Someone in India needs blood</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section" id="about" data-aos="fade-up">
+        <div class="container">
+            <h2 class="section-title">Why Blood Donation Matters</h2>
+            <div class="content-grid">
+                <div class="content-card">
+                    <i class="fas fa-tint"></i>
+                    <h3>Critical for Healthcare</h3>
+                    <p>Blood is essential for surgeries, trauma care, cancer treatment, and managing chronic diseases.</p>
+                </div>
+                <div class="content-card">
+                    <i class="fas fa-microscope"></i>
+                    <h3>Safe & Voluntary</h3>
+                    <p>Voluntary, non-remunerated blood donation is the safest source for blood transfusion.</p>
+                </div>
+                <div class="content-card">
+                    <i class="fas fa-hands-helping"></i>
+                    <h3>Community Impact</h3>
+                    <p>Donating blood strengthens community bonds and saves lives in emergencies and disasters.</p>
+                </div>
+                <div class="content-card">
+                    <i class="fas fa-globe-asia"></i>
+                    <h3>Bridging the Gap</h3>
+                    <p>India needs 15 million units of blood annually, but only 11 million are collected. Your donation can bridge this gap.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="blood-types" id="blood-types" data-aos="fade-up">
+        <div class="container">
+            <div style="background:rgba(255,255,255,0.95);display:flex;justify-content:center;align-items:center;padding:0.5rem 2rem;border-radius:10px;margin:0 auto 2rem auto;box-shadow:0 2px 8px rgba(0,0,0,0.04);max-width:fit-content;">
+                <h2 class="section-title" style="color:#1A237E;text-shadow:1px 1px 4px #fff;margin:0;">Blood Type Compatibility</h2>
+            </div>
+            <div class="blood-types-scroll">
+                <div class="blood-type-card">
+                    <h3>Type A+</h3>
+                    <p>Can donate to: A+, AB+</p>
+                    <p>Can receive from: A+, A-, O+, O-</p>
+                </div>
+                <div class="blood-type-card">
+                    <h3>Type B+</h3>
+                    <p>Can donate to: B+, AB+</p>
+                    <p>Can receive from: B+, B-, O+, O-</p>
+                </div>
+                <div class="blood-type-card">
+                    <h3>Type AB+</h3>
+                    <p>Can donate to: AB+</p>
+                    <p>Can receive from: All types</p>
+                </div>
+                <div class="blood-type-card">
+                    <h3>Type O+</h3>
+                    <p>Can donate to: All positive types</p>
+                    <p>Can receive from: O+, O-</p>
+                </div>
+                <div class="blood-type-card">
+                    <h3>Type A-</h3>
+                    <p>Can donate to: A+, A-, AB+, AB-</p>
+                    <p>Can receive from: A-, O-</p>
+                </div>
+                <div class="blood-type-card">
+                    <h3>Type B-</h3>
+                    <p>Can donate to: B+, B-, AB+, AB-</p>
+                    <p>Can receive from: B-, O-</p>
+                </div>
+                <div class="blood-type-card">
+                    <h3>Type AB-</h3>
+                    <p>Can donate to: AB+, AB-</p>
+                    <p>Can receive from: A-, B-, AB-, O-</p>
+                </div>
+                <div class="blood-type-card">
+                    <h3>Type O-</h3>
+                    <p>Can donate to: All types</p>
+                    <p>Can receive from: O-</p>
+                </div>
+                <!-- Duplicate for seamless scroll -->
+                <div class="blood-type-card">
+                    <h3>Type A+</h3>
+                    <p>Can donate to: A+, AB+</p>
+                    <p>Can receive from: A+, A-, O+, O-</p>
+                </div>
+                <div class="blood-type-card">
+                    <h3>Type B+</h3>
+                    <p>Can donate to: B+, AB+</p>
+                    <p>Can receive from: B+, B-, O+, O-</p>
+                </div>
+                <div class="blood-type-card">
+                    <h3>Type AB+</h3>
+                    <p>Can donate to: AB+</p>
+                    <p>Can receive from: All types</p>
+                </div>
+                <div class="blood-type-card">
+                    <h3>Type O+</h3>
+                    <p>Can donate to: All positive types</p>
+                    <p>Can receive from: O+, O-</p>
+                </div>
+                <div class="blood-type-card">
+                    <h3>Type A-</h3>
+                    <p>Can donate to: A+, A-, AB+, AB-</p>
+                    <p>Can receive from: A-, O-</p>
+                </div>
+                <div class="blood-type-card">
+                    <h3>Type B-</h3>
+                    <p>Can donate to: B+, B-, AB+, AB-</p>
+                    <p>Can receive from: B-, O-</p>
+                </div>
+                <div class="blood-type-card">
+                    <h3>Type AB-</h3>
+                    <p>Can donate to: AB+, AB-</p>
+                    <p>Can receive from: A-, B-, AB-, O-</p>
+                </div>
+                <div class="blood-type-card">
+                    <h3>Type O-</h3>
+                    <p>Can donate to: All types</p>
+                    <p>Can receive from: O-</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-blood-section" data-aos="fade-up">
+        <div class="container">
+            <h2 class="section-title" style="color:#1A237E;">What Happens to Donated Blood?</h2>
+            <div class="content-grid">
+                <div class="content-card">
+                    <i class="fas fa-vials"></i>
+                    <h3>Testing</h3>
+                    <p>Every unit of donated blood is tested for blood group, HIV, Hepatitis B & C, syphilis, malaria, and other infections to ensure safety.</p>
+                </div>
+                <div class="content-card">
+                    <i class="fas fa-layer-group"></i>
+                    <h3>Component Separation</h3>
+                    <p>Blood is separated into components: red cells, plasma, platelets, and cryoprecipitate. This allows one donation to help multiple patients.</p>
+                </div>
+                <div class="content-card">
+                    <i class="fas fa-warehouse"></i>
+                    <h3>Storage</h3>
+                    <p>Each component is stored under specific conditions: red cells (up to 42 days), platelets (5 days), plasma (up to 1 year when frozen).</p>
+                </div>
+                <div class="content-card">
+                    <i class="fas fa-hands-holding"></i>
+                    <h3>Usage</h3>
+                    <p>Blood components are used for surgeries, trauma, cancer therapy, anemia, and for patients with bleeding disorders or severe infections.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="process-section" id="process" data-aos="fade-up">
+        <div class="container">
+            <h2 class="section-title">How Donation Works</h2>
+            <div class="process-steps">
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <h3>Registration</h3>
+                    <p>Fill out a health questionnaire and provide ID proof.</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <h3>Screening</h3>
+                    <p>Quick health check: hemoglobin, blood pressure, and temperature.</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <h3>Donation</h3>
+                    <p>Blood is drawn safely by professionals (8-10 minutes).</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">4</span>
+                    <h3>Refresh</h3>
+                    <p>Enjoy snacks and rest before leaving.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="benefits-section" id="benefits" data-aos="fade-up">
+        <div class="container">
+            <h2 class="section-title">Benefits of Donating Blood</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <i class="fas fa-heart"></i>
+                    <h3>Improves Heart Health</h3>
+                    <ul>
+                        <li>Lowers risk of heart disease and stroke</li>
+                        <li>Reduces harmful iron stores</li>
+                        <li>Promotes new blood cell production</li>
+                    </ul>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Community & Social Good</h3>
+                    <ul>
+                        <li>Saves up to 3 lives per donation</li>
+                        <li>Supports hospitals and accident victims</li>
+                        <li>Builds a culture of empathy and care</li>
+                    </ul>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-medal"></i>
+                    <h3>Personal Rewards</h3>
+                    <ul>
+                        <li>Free health screening</li>
+                        <li>Know your blood type</li>
+                        <li>Sense of pride and fulfillment</li>
+                    </ul>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-brain"></i>
+                    <h3>Mental Wellbeing</h3>
+                    <ul>
+                        <li>Boosts happiness through altruism</li>
+                        <li>Reduces stress and anxiety</li>
+                        <li>Connects you to a life-saving community</li>
+                    </ul>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-award"></i>
+                    <h3>Recognition & Perks</h3>
+                    <ul>
+                        <li>Certificates and badges</li>
+                        <li>Special donor events</li>
+                        <li>Priority in blood requests</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="facts-section" data-aos="fade-up" id="faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="facts-grid">
+                <div class="fact-card">
+                    <i class="fas fa-question-circle"></i>
+                    <h3>Who can donate?</h3>
+                    <p>Healthy adults aged 18-65, weighing at least 50kg, can donate blood.</p>
+                </div>
+                <div class="fact-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>How often can I donate?</h3>
+                    <p>Every 3 months for men, every 4 months for women.</p>
+                </div>
+                <div class="fact-card">
+                    <i class="fas fa-thermometer-half"></i>
+                    <h3>Is it safe?</h3>
+                    <p>Yes! All equipment is sterile and single-use. Donation is quick and safe.</p>
+                </div>
+                <div class="fact-card">
+                    <i class="fas fa-apple-alt"></i>
+                    <h3>What should I do before donating?</h3>
+                    <p>Eat a healthy meal, drink water, and avoid fatty foods before donation.</p>
+                </div>
+                <div class="fact-card">
+                    <i class="fas fa-hands-wash"></i>
+                    <h3>What about COVID-19?</h3>
+                    <p>Recovered COVID-19 patients can donate after 14 days of symptom resolution.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section" data-aos="fade-up">
+        <div class="container">
+            <div class="search-container">
+                <h2 class="section-title">Find Blood Donors</h2>
+                <form id="searchForm" class="search-form">
+                    <div class="search-inputs">
+                        <div class="form-group">
+                            <label for="blood_group">Blood Type</label>
+                            <select class="form-control" id="blood_group" name="blood_group" required>
+                                <option value="">Select Blood Type</option>
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="location">City</label>
+                            <select class="form-control" id="location" name="location" required>
+                                <option value="">Select City</option>
+                                <option value="Mumbai">Mumbai</option>
+                                <option value="Delhi">Delhi</option>
+                                <option value="Bangalore">Bangalore</option>
+                                <option value="Hyderabad">Hyderabad</option>
+                                <option value="Chennai">Chennai</option>
+                                <option value="Kolkata">Kolkata</option>
+                                <option value="Pune">Pune</option>
+                                <option value="Ahmedabad">Ahmedabad</option>
+                                <option value="Jaipur">Jaipur</option>
+                                <option value="Lucknow">Lucknow</option>
+                                <option value="Kanpur">Kanpur</option>
+                                <option value="Nagpur">Nagpur</option>
+                                <option value="Indore">Indore</option>
+                                <option value="Thane">Thane</option>
+                                <option value="Bhopal">Bhopal</option>
+                                <option value="Visakhapatnam">Visakhapatnam</option>
+                                <option value="Patna">Patna</option>
+                                <option value="Vadodara">Vadodara</option>
+                                <option value="Ghaziabad">Ghaziabad</option>
+                                <option value="Ludhiana">Ludhiana</option>
+                                <option value="Coimbatore">Coimbatore</option>
+                                <option value="Kochi">Kochi</option>
+                                <option value="Guwahati">Guwahati</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn primary-btn">Search Donors</button>
+                    </div>
+                </form>
+
+                <!-- Loading Animation -->
+                <div id="loadingAnimation" class="loading-container" style="display: none;">
+                    <div class="loading-spinner"></div>
+                    <p>Searching for donors...</p>
+                </div>
+
+                <!-- Search Results -->
+                <div id="searchResults" class="search-results" style="display: none;">
+                    <h3>Available Donors</h3>
+                    <div id="donorsGrid" class="donors-grid"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>BloodUcate</h3>
+                    <p>Empowering India through safe, voluntary blood donation.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="#about">About</a>
+                    <a href="#blood-types">Blood Types</a>
+                    <a href="#process">Process</a>
+                    <a href="#benefits">Benefits</a>
+                    <a href="#faq">FAQ</a>
+                    <a href="#statistics">Statistics</a>
+                </div>
+                <div class="footer-section contact-section">
+                    <h3>Contact</h3>
+                    <p>Email: <a href="mailto:info@blooducate.com">info@blooducate.com</a></p>
+                    <p>Phone: <a href="tel:9999999999">+91 99999 99999</a></p>
+                    <p>Address: Hyderabad, Telangana</p>
+                    <div class="dev-line">
+                        <span>Developed by <strong>NITHISH REDDY KOLA</strong> & <strong>UDAY KIRAN K</strong></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Search Results Modal -->
+    <div id="searchModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="modalLoadingAnimation" class="loading-container" style="display: none;">
+                <div class="loading-spinner"></div>
+                <p>Searching for donors...</p>
+            </div>
+            <div id="modalSearchResults" class="search-results" style="display: none;">
+                <h3>Available Donors</h3>
+                <div id="modalDonorsGrid" class="donors-grid"></div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+    /* Add these styles at the end of your existing styles */
+    .nav-search {
+        display: flex;
+        align-items: center;
+        margin: 0 1rem;
+    }
+
+    .nav-search-form {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+    }
+
+    .nav-search-form .form-control {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+    }
+
+    .nav-search-form .btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    /* Modal Styles */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1001;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.5);
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 5% auto;
+        padding: 2rem;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 800px;
+        position: relative;
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+
+    .close-modal {
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+        font-size: 1.5rem;
+        font-weight: bold;
+        cursor: pointer;
+        color: #666;
+    }
+
+    .close-modal:hover {
+        color: #000;
+    }
+
+    @media (max-width: 1200px) {
+        .nav-search {
+            display: none;
+        }
+    }
+
+    .donor-card {
+        background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+        border-radius: 10px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 16px rgba(26,35,126,0.08);
+        border: 1px solid #e0e0e0;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .donor-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 24px rgba(26,35,126,0.12);
+    }
+
+    .donor-info h4 {
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .donor-info p {
+        margin: 0.5rem 0;
+        color: #555;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .donor-info i {
+        color: var(--primary-color);
+        width: 20px;
+        font-size: 1.1rem;
+    }
+
+    .no-results {
+        text-align: center;
+        padding: 2rem;
+        background: #fff3f3;
+        border-radius: 10px;
+        margin-top: 1rem;
+        border: 1px solid #ffcdd2;
+    }
+
+    .no-results i {
+        font-size: 2.5rem;
+        color: #f44336;
+        margin-bottom: 1rem;
+    }
+
+    .no-results p {
+        color: #d32f2f;
+        font-size: 1.1rem;
+        margin: 0.5rem 0;
+    }
+
+    .no-results .suggestion {
+        color: #666;
+        font-size: 0.95rem;
+        margin-top: 0.5rem;
+    }
+    </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        document.getElementById('searchForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const bloodGroup = document.getElementById('blood_group').value;
+            const location = document.getElementById('location').value;
+            
+            // Show loading animation
+            document.getElementById('loadingAnimation').style.display = 'flex';
+            document.getElementById('searchResults').style.display = 'none';
+            
+            // Make AJAX request
+            fetch(`/search_donors?blood_group=${bloodGroup}&location=${location}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Hide loading animation
+                    document.getElementById('loadingAnimation').style.display = 'none';
+                    
+                    // Show results container
+                    document.getElementById('searchResults').style.display = 'block';
+                    
+                    const donorsGrid = document.getElementById('donorsGrid');
+                    
+                    if (data.donors && data.donors.length > 0) {
+                        // Clear previous results
+                        donorsGrid.innerHTML = '';
+                        
+                        // Add donor cards
+                        data.donors.forEach(donor => {
+                            const donorCard = `
+                                <div class="donor-card">
+                                    <div class="donor-info">
+                                        <h4><i class="fas fa-user"></i> ${donor.name}</h4>
+                                        <p><i class="fas fa-tint"></i> Blood Type: ${donor.blood_group}</p>
+                                        <p><i class="fas fa-phone"></i> Contact: ${donor.phone}</p>
+                                        <p><i class="fas fa-map-marker-alt"></i> Location: ${donor.location}</p>
+                                        <p><i class="fas fa-calendar"></i> Last Donation: ${donor.last_donation_date || 'Never'}</p>
+                                    </div>
+                                </div>
+                            `;
+                            donorsGrid.innerHTML += donorCard;
+                        });
+                    } else {
+                        // Show no results message
+                        donorsGrid.innerHTML = `
+                            <div class="no-results">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <p>No donors found</p>
+                            </div>
+                        `;
+                    }
+                })
+                .catch(error => {
+                    // Hide loading animation
+                    document.getElementById('loadingAnimation').style.display = 'none';
+                    
+                    // Show error message
+                    document.getElementById('searchResults').style.display = 'block';
+                    document.getElementById('donorsGrid').innerHTML = `
+                        <div class="no-results">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <p>An error occurred while searching. Please try again.</p>
+                        </div>
+                    `;
+                });
+        });
+
+        document.getElementById('navSearchForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const bloodGroup = document.getElementById('nav_blood_group').value;
+            const location = document.getElementById('nav_location').value;
+            
+            // Show modal
+            document.getElementById('searchModal').style.display = 'block';
+            
+            // Show loading animation
+            document.getElementById('modalLoadingAnimation').style.display = 'flex';
+            document.getElementById('modalSearchResults').style.display = 'none';
+            
+            // Make AJAX request
+            fetch(`/search_donors?blood_group=${bloodGroup}&location=${location}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Hide loading animation
+                    document.getElementById('modalLoadingAnimation').style.display = 'none';
+                    
+                    // Show results container
+                    document.getElementById('modalSearchResults').style.display = 'block';
+                    
+                    const donorsGrid = document.getElementById('modalDonorsGrid');
+                    
+                    if (data.donors && data.donors.length > 0) {
+                        // Clear previous results
+                        donorsGrid.innerHTML = '';
+                        
+                        // Add donor cards
+                        data.donors.forEach(donor => {
+                            const donorCard = `
+                                <div class="donor-card">
+                                    <div class="donor-info">
+                                        <h4><i class="fas fa-user"></i> ${donor.name}</h4>
+                                        <p><i class="fas fa-tint"></i> Blood Type: ${donor.blood_group}</p>
+                                        <p><i class="fas fa-phone"></i> Contact: ${donor.phone}</p>
+                                        <p><i class="fas fa-map-marker-alt"></i> Location: ${donor.location}</p>
+                                        <p><i class="fas fa-calendar"></i> Last Donation: ${donor.last_donation_date || 'Never'}</p>
+                                    </div>
+                                </div>
+                            `;
+                            donorsGrid.innerHTML += donorCard;
+                        });
+                    } else {
+                        // Show no results message
+                        donorsGrid.innerHTML = `
+                            <div class="no-results">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <p>No donors found</p>
+                            </div>
+                        `;
+                    }
+                })
+                .catch(error => {
+                    // Hide loading animation
+                    document.getElementById('modalLoadingAnimation').style.display = 'none';
+                    
+                    // Show error message
+                    document.getElementById('modalSearchResults').style.display = 'block';
+                    document.getElementById('modalDonorsGrid').innerHTML = `
+                        <div class="no-results">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <p>An error occurred while searching. Please try again.</p>
+                        </div>
+                    `;
+                });
+        });
+
+        // Close modal when clicking the close button
+        document.querySelector('.close-modal').addEventListener('click', function() {
+            document.getElementById('searchModal').style.display = 'none';
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('searchModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
